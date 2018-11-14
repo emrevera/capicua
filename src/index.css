@@ -1,0 +1,377 @@
+/* CSS Reset */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+	font-size: 14px;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+input,
+button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+button {
+	cursor: pointer;
+	border: none;
+	background-color: transparent;
+	padding: 0;
+}
+
+/* Fonts */
+
+@import url('https://fonts.googleapis.com/css?family=Overlock|Viga');
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Viga', sans-serif;
+	text-transform: uppercase;
+}
+
+:root {
+	--white: #fff;
+	--graybkg: #f7f7f7;
+	--txtprimary: #3f3f3f;
+	--borders: #e4e4e4;
+	--actions: #D64C2A;
+}
+
+::selection {
+	background-color: var(--actions);
+	color: var(--white);
+}
+
+::-moz-selection {
+	background-color: var(--actions);
+	color: var(--white);
+}
+
+/* Layout */
+
+html,
+body,
+#root,
+.App {
+	height: 100%;
+	min-height: 100%;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-family: 'Overlock', cursive;
+	color: var(--txtprimary);
+	background-color: var(--graybkg);
+}
+
+.App {
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.layout {
+	background-color: var(--white);
+	display: grid;
+	min-height: 100%;
+	box-shadow: 0 0 20px 0 rgba(0,0,0,0.06);
+	grid-template-rows: 30px auto 30px;
+	grid-template-columns: 30px auto 40px 350px 30px;
+	grid-template-areas: '. . . . .'
+						 '. products . cart .'
+						 '. . . . .';
+}
+
+.products {
+	grid-area: products;
+}
+
+.cart {
+	grid-area: cart;
+}
+
+/* Products */
+
+.filter {
+	margin-bottom: 25px;
+}
+
+.filter select {
+	border: solid 1px var(--borders);
+	font-size: 14px;
+	padding: 8px 20px 6px 10px;
+	text-transform: uppercase;
+	font-family: 'Viga';
+}
+
+.productDetail {
+	display: flex;
+}
+
+.image {
+	margin-right: 40px;
+	max-width: 480px;
+	overflow: hidden; 
+}
+
+.image img {
+	width: 100%;
+	animation-name: grow;
+	animation-duration: 10s;
+	animation-fill-mode: both;
+	animation-iteration-count: 1;
+	animation-delay: 0s;
+}
+
+@keyframes grow {
+	0% {transform: scale(1);}
+	100% {transform: scale(1.4);}
+}
+
+.details {
+	max-width: 480px;
+}
+
+.details h2 {
+	font-size: 25px;
+	margin-bottom: 20px;
+}
+
+.details p {
+	font-size: 16px;
+	line-height: 1.7em;
+	margin-bottom: 20px;
+}
+
+.details h3 {
+	margin-bottom: 20px;
+}
+
+.details h3 span {
+	color: var(--actions);
+}
+
+.details button {
+	font-size: 15px;
+	background-color: var(--actions);
+	color: var(--white);
+	border-radius: 2px;
+	font-family: 'Viga';
+	text-transform: uppercase;
+	height: 38px;
+	padding: 0 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.2s ease;
+}
+
+.details button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 2px 1px rgba(0,0,0,0.2), inset 0 0 50px rgba(255,255,255,0.1);
+	text-shadow: 0 0 1px rgba(0,0,0,0.4);
+}
+
+.details button:active,
+.details button:active:hover {
+	transform: translateY(0);
+	box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
+}
+
+.details button span {
+	margin-right: 5px;
+	font-size: 17px;
+}
+
+/* Cart */
+
+.cart {
+	text-align: right;
+}
+
+.emptyCart {
+	color: var(--borders);
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation-name: alpha;
+	animation-duration: .5s;
+	animation-fill-mode: both;
+	animation-iteration-count: 1;
+	animation-delay: 0s;
+}
+
+@keyframes alpha {
+	0% {opacity: 0; height: 0;}
+	100% {opacity: 1; height: 80px;}
+}
+
+.viewCart {
+	padding: 0;
+	position: relative;
+	font-size: 14px;
+	margin-bottom: 40px;
+	transition: all 0.2s linear;
+}
+
+.viewCart:hover {
+	transform: scale(1.14);
+}
+
+.viewCart span {
+	color: var(--actions);
+	margin-right: 5px;
+}
+
+.viewCart strong {
+	background-color: var(--actions);
+	color: var(--white);
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	line-height: 19px;
+	border-radius: 2px;
+	margin-left: 5px;
+}
+
+.receipt {
+	border: solid 1px var(--borders); 
+	padding: 40px 20px;
+	text-align: left;
+	position: relative;
+	margin-bottom: 25px;
+	box-shadow: 0 0 30px rgba(0,0,0,0.05);
+}
+
+.receipt::before,
+.receipt::after {
+	content: '';
+	background: url('/img/tip.svg') repeat-x;
+	position: absolute;
+	width: 100%;
+	top: -10px;
+	height: 10px;
+	left: 0;
+	background-size: 35px auto;
+}
+
+.receipt::after {
+	transform: rotate(180deg);
+	top: auto;
+	bottom: -10px;
+}
+
+.receipt h3 {
+	border-bottom: dashed 1px var(--borders); 
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	font-size: 16px;
+}
+
+.receipt ul {
+
+}
+
+.receipt ul li {
+	display: flex;
+	flex: 1;
+	justify-content: space-between;
+	padding: 6px 35px 6px 10px;
+	position: relative;
+	font-size: 16px;
+	cursor: default;
+	transition: all 0.3s ease;
+	margin-bottom: 8px;
+	animation-name: bounce;
+	animation-duration: .5s;
+	animation-fill-mode: both;
+	animation-iteration-count: 1;
+	animation-delay: 0s;
+}
+
+@keyframes bounce {
+	0% {transform: translateY(-5px);}
+	25% {transform: translateY(5px);}
+	50% {transform: translateY(-2px);}
+	75% {transform: translateY(2px);}
+	100% {transform: translateY(0px);}
+}
+
+.receipt ul li:hover {
+	background-color: var(--graybkg);
+}
+
+.receipt ul li button {
+	font-size: 15px;
+	color: var(--actions);
+	position: absolute;
+	right: 10px;
+	top: 4px;
+}
+
+.receipt h4 {
+	border-top: dashed 1px var(--borders); 
+	padding-top: 15px;
+	margin-top: 15px;
+	font-size: 16px;
+	display: flex;
+	justify-content: space-between;
+	padding-right: 35px;
+}
+
+button.clear {
+	font-size: 14px;
+}
+
+button.clear span {
+	color: var(--actions);
+	font-size: 12px;
+	margin-right: 5px;
+}

@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Product One",
+        "description": "Cras at ligula tortor. Ut a velit metus. Nullam posuere volutpat erat at ultricies. Nulla eleifend volutpat massa, ut malesuada neque rhoncus a. Pellentesque vitae nisi ut nisi ultricies ultrices. Praesent faucibus dui ac nisi elementum, sit amet aliquet lacus finibus. Nulla tellus ipsum, aliquam quis lacinia ut, convallis eget metus.",
+        "price": 1000,
+        "img": "./img/product-01.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Product Two",
+        "description": "Cras at ligula tortor. Ut a velit metus. Nullam posuere volutpat erat at ultricies. Nulla eleifend volutpat massa, ut malesuada neque rhoncus a. Pellentesque vitae nisi ut nisi ultricies ultrices. Praesent faucibus dui ac nisi elementum, sit amet aliquet lacus finibus. Nulla tellus ipsum, aliquam quis lacinia ut, convallis eget metus.",
+        "price": 1000,
+        "img": "./img/product-02.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Product Three",
+        "description": "Cras at ligula tortor. Ut a velit metus. Nullam posuere volutpat erat at ultricies. Nulla eleifend volutpat massa, ut malesuada neque rhoncus a. Pellentesque vitae nisi ut nisi ultricies ultrices. Praesent faucibus dui ac nisi elementum, sit amet aliquet lacus finibus. Nulla tellus ipsum, aliquam quis lacinia ut, convallis eget metus.",
+        "price": 1000,
+        "img": "./img/product-03.jpg"
+    }
+]
