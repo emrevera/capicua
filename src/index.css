@@ -327,10 +327,6 @@ body {
 	font-size: 16px;
 }
 
-.receipt ul {
-
-}
-
 .receipt ul li {
 	display: flex;
 	flex: 1;
@@ -386,4 +382,60 @@ button.clear span {
 	color: var(--actions);
 	font-size: 12px;
 	margin-right: 5px;
+}
+
+/*Media Queries*/
+
+@media screen and (max-width:1200px) {
+
+	.layout {
+		grid-template-rows: 30px auto 30px auto 30px;
+		grid-template-columns: 30px auto 30px;
+		grid-template-areas: '. . .'
+							 '. products .'
+							 '. . .'
+							 '. cart .';
+	}
+
+	.details {
+		max-width: unset;
+	}
+
+	.image {
+		min-width: 260px;
+		margin-right: 0;
+		margin-bottom: 40px;
+	}
+
+	.cart {
+		border-top: solid 1px var(--borders);
+		padding-top: 30px;
+		margin-top: 10px;
+	}
+
+}
+
+@media screen and (max-width:767px) {
+
+	.productDetail {
+		flex-direction: column;
+	}
+
+	.image {
+		width: 100%;
+		max-width: unset;
+	}
+
+}
+
+@media screen and (max-width:480px) {
+
+	.App {
+		padding: 0;
+	}
+
+	.layout {
+		grid-template-columns: 15px auto 15px;
+	}
+
 }

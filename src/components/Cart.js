@@ -7,8 +7,7 @@ const Cart = props => {
 	);
 	return (
 		<li>
-			<span>{props.selectedItem.amount}</span>
-			{cartItem.name}
+			<span>{props.selectedItem.amount} -  {cartItem.name}</span>
 			<strong>$ {props.formatPrices(cartItem.price * props.selectedItem.amount)}</strong>
 			<button className="remove" title="Remove" onClick={props.removeFromCart(props.selectedItem.id)}>
 				<i className="far fa-trash-alt"></i>
