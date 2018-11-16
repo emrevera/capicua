@@ -197,6 +197,18 @@ body {
 	color: var(--actions);
 }
 
+.details .addToCart {
+	display: flex;
+}
+
+.details .addToCart input {
+	border: solid 1px var(--borders);
+	font-size: 14px;
+	padding: 6px 10px;
+	width: 60px;
+	margin-right: 15px;
+}
+
 .details button {
 	font-size: 15px;
 	background-color: var(--actions);

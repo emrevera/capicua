@@ -9,10 +9,13 @@ const Product = props => (
 			<h2>{props.name}</h2>
 			<p>{props.description}</p>
 			<h3>Price: $ <span>{props.formatPrices(props.price)}</span></h3>
-			<button onClick={props.addToCart(props.id)}>
-				<span><i className="fas fa-shopping-basket"></i></span>
-				Add To Cart
-			</button>
+			<div className="addToCart">
+				<input type="number" placeholder="QTY" min="1" defaultValue="1" />
+				<button onClick={props.addToCart(props.id)}>
+					<span><i className="fas fa-shopping-basket"></i></span>
+					Add To Cart
+				</button>
+			</div>
 		</div>
 	</div>
 );

@@ -11,43 +11,57 @@ const createProductsInCart = products =>
 
 class App extends Component {
 
-	//meter todo en un json, comentar el codigo
-
 	state = {
 		productsInCart: createProductsInCart(products),
 		totalAmount: 0,
 		totalItems: 0,
-		currentProductDisplayed: products[0].id, //Id from first product on Data file
+		currentProductDisplayed: products[0].id, // Id from first product on Data file
 	};
 
 	addToCart = id => e => {
+		let qtyElement = document.querySelector('.addToCart input');
+		let qty = Math.floor(Number(qtyElement.value));
+		let thisObj = this;
+
+		qty = qty === 0 ? 1 : qty;
+		qtyElement.value = qty;
+
 		this.setState(prevState => ({
 			productsInCart: prevState.productsInCart.map(product =>
-				product.id === id ? { ...product, amount: product.amount + 1 } : product
+				product.id === id ? { ...product, amount: product.amount + qty } : product
 			),
-		}));
-		this.calculateCartTotal();
-		this.calculateItemsInCart();
+		}), () => {
+			thisObj.calculateCartTotal();
+			thisObj.calculateItemsInCart();
+		});
 	};
 
 	removeFromCart = id => e => {
+		let thisObj = this;
+
 		this.setState(prevState => ({
 			productsInCart: prevState.productsInCart.map(product =>
-				product.id === id ? { ...product, amount: product.amount - 1 } : product
+				product.id === id ? { ...product, amount: 0 } : product // Replace '0' for 'product.amount - 1' to deduct products one by one
 			),
-		}));
-		this.calculateCartTotal();
-		this.calculateItemsInCart();
+		}), () => {
+			this.calculateCartTotal();
+			this.calculateItemsInCart();
+		});
 	};
 
 	emptyCartAction = e => {
+		let thisObj = this;
+
 		this.setState(prevState => ({
 			productsInCart: prevState.productsInCart.map(product =>
-				product.amount > 0 ? { ...product, amount: 0 } : 0
+				{ 
+					return { ...product, amount: 0 } 
+				}
 			),
-		}));
-		this.calculateCartTotal();
-		this.calculateItemsInCart();
+		}), () => {
+			this.calculateCartTotal();
+			this.calculateItemsInCart();
+		});
 	};
 
 	calculateCartTotal = e => {
@@ -58,6 +72,7 @@ class App extends Component {
 				if(product.amount > 0) {
 					totalAmount += product.price * product.amount;
 				} 
+				return totalAmount;
 			});
 			
 			return {totalAmount: this.formatPrices(totalAmount)};
@@ -72,6 +87,7 @@ class App extends Component {
 				if(product.amount > 0) {
 					totalItems += product.amount;
 				}
+				return totalItems;
 			});
 
 			return {totalItems: totalItems};
@@ -82,7 +98,7 @@ class App extends Component {
 		let productToShow = e.target.value;
 
 		this.setState((prevState, currentProps) => {
-			return {currentProductDisplayed: productToShow};
+			return {currentProductDisplayed: Number(productToShow)};
 		});
 	}
 
@@ -98,8 +114,8 @@ class App extends Component {
 					<div className="products">
 						<div className="filter">
 							<form>
-								<select onChange={this.showProduct}>
-									<option disabled selected>Select Your Menu for the day</option>
+								<select onChange={this.showProduct} defaultValue="">
+									<option disabled value="">Select Your Menu for the day</option>
 									{products.map(product => (
 										<option value={product.id} key={product.id}>{product.name}</option>
 									))}
@@ -107,9 +123,10 @@ class App extends Component {
 							</form>
 						</div>
 						{products.map(product => {
-							if(this.state.currentProductDisplayed == product.id) {
+							if(this.state.currentProductDisplayed === product.id) {
 								return <Product key={product.id} formatPrices={this.formatPrices} {...product} addToCart={this.addToCart} />
 							}
+							return false;
 						})}
 					</div>
 					<div className="cart">
