@@ -6,6 +6,7 @@ import EmptyCartButton from './components/EmptyCartButton.js';
 import CartPlaceHolder from './components/CartPlaceHolder.js';
 import ViewCartAmount from './components/ViewCartAmount.js';
 
+//  Adding ammount to each product
 const createProductsInCart = products => 
 	products.map(product => ({ id: product.id, amount: 0, price: product.price }));
 
@@ -18,6 +19,7 @@ class App extends Component {
 		currentProductDisplayed: products[0].id, // Id from first product on Data file
 	};
 
+	// Adding Items to cart
 	addToCart = id => e => {
 		let qtyElement = document.querySelector('.addToCart input');
 		let qty = Math.floor(Number(qtyElement.value));
@@ -36,6 +38,7 @@ class App extends Component {
 		});
 	};
 
+	//Removing items from Cart
 	removeFromCart = id => e => {
 		let thisObj = this;
 
@@ -49,6 +52,7 @@ class App extends Component {
 		});
 	};
 
+	//Clearing the items on the cart
 	emptyCartAction = e => {
 		let thisObj = this;
 
@@ -64,6 +68,7 @@ class App extends Component {
 		});
 	};
 
+	//Calculate the total price for the products in cart
 	calculateCartTotal = e => {
 		this.setState((prevState, currentProps) => {
 			let totalAmount = 0;
@@ -79,6 +84,7 @@ class App extends Component {
 		});
 	}
 
+	//Get current number of items in cart
 	calculateItemsInCart = e => {
 		this.setState((prevState, currentProps) => {
 			let totalItems = 0;
@@ -94,6 +100,7 @@ class App extends Component {
 		});
 	}
 
+	//Selecting Products
 	showProduct = e => {
 		let productToShow = e.target.value;
 
@@ -102,6 +109,7 @@ class App extends Component {
 		});
 	}
 
+	//Formating prices
 	formatPrices = (unformated) => {
 		let toFormat = unformated.toString();
 		return toFormat.replace(/(?:(^\d{1,3})(?=(?:\d{3})*$)|(\d{3}))(?!$)/mg, '$1$2.')+',00';
